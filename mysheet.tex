@@ -1,0 +1,176 @@
+\documentclass[a4paper,12pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+
+% To make this come out properly in landscape mode, do one of the following
+% 1.
+%  pdflatex latexsheet.tex
+%
+% 2.
+%  latex latexsheet.tex
+%  dvips -P pdf  -t landscape latexsheet.dvi
+%  ps2pdf latexsheet.ps
+
+
+% If you're reading this, be prepared for confusion.  Making this was
+% a learning experience for me, and it shows.  Much of the placement
+% was hacked in; if you make it better, let me know...
+
+
+% 2008-04
+% Changed page margin code to use the geometry package. Also added code for
+% conditional page margins, depending on paper size. Thanks to Uwe Ziegenhagen
+% for the suggestions.
+
+% 2006-08
+% Made changes based on suggestions from Gene Cooperman. <gene at ccs.neu.edu>
+
+
+% To Do:
+% \listoffigures \listoftables
+% \setcounter{secnumdepth}{0}
+
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm
+% if using A4 paper. (This probably isn't strictly necessary.)
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+	{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+
+% Turn off header and footer
+\pagestyle{empty}
+ 
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {-0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries\hrulefill}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+
+\def\cm#1#2{{\tt#1} \dotfill {#2}\par}
+\def\cmlong#1#2{{\tt#1}\\{}\indent{~~~}#2\par}
+% -----------------------------------------------------------------------
+
+\begin{document}
+
+\raggedright
+\footnotesize
+\begin{multicols*}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\begin{center}
+     \Large{\textbf{All-in-one Cheat Sheet}} \\
+     \footnotesize{Shing Lyu \\shing.lyu@gmail.com\\ \today}
+\end{center}
+
+\section{vim} 
+\subsection{vim-latex suite}
+\verb|\ll| \dotfill {compile} \\
+\verb|\lv| \dotfill {view pdf} \\
+\verb|F5| \dotfill {auto-complete} \\
+\verb|Ctrl+j| \dotfill {jump out of brackets} \\
+\verb|\rf| \dotfill {fold entire document} \\
+\verb|za| \dotfill {fold/unfold} \\
+
+
+\subsection{spell}
+\verb|:set spell| \dotfill {enable spell check} \\
+\verb|]s| \dotfill {jump to next wrong word} \\
+\verb|z=| \dotfill {suggest correct words} \\
+
+\subsection{beamer}
+\verb|\vspace{\baselineskip}| \dotfill {blank line} \\
+\subsection{my vimrc}
+\verb|br| \dotfill {surround word w/ ( )} \\
+\verb|ar| \dotfill {surround word w/ [ ]} \\
+\verb|cr| \dotfill {surround word w/ \{ \}} \\
+
+\section{Linux}
+\subsection{Hardware}
+\verb|fdisk -l| \dotfill {HDD partition info} \\
+\verb|df -h -T| \dotfill {filesystem usage} \\
+\verb|lspci| \dotfill {list PCI devices} \\
+\verb|lsusb| \dotfill {list USB devices} \\
+\verb|free -m| \dotfill {memory usage} \\
+\verb|cat /proc/cpuinfo| \dotfill {CPU info} \\
+
+\subsection{Power}
+\verb|shutdown -h -P <min>| \dotfill {poweroff after given minutes} \\
+
+\subsection{Filesystem}
+\verb|locate <filename>| \dotfill {find file (using database)} \\
+\verb|find <path> -name <filename>| \dotfill {find file} \\
+\verb=du -s -m * | sort -rn = \dotfill {list the biggest folders} \\
+\verb|ln -s <file> <sym link>| \dotfill {create symbolic link} \\
+\verb|tar -zcvf <tar name>.tar.gz <files>|\\ .\dotfill {tar and compress using gzip} \\
+\verb|tar -zxvf <tar name>.tar.gz -C <dest dir>|\\ .\dotfill {unzip and untar} \\
+\verb|mount -o loop <filename>.iso <mount point>| \\ .\dotfill {mount iso as cd/dvd} \\
+%TODO cpio
+%TODO grep 
+\verb|grep "<regex pattern>" <file/stdin>| \\ .\dotfill {find lines with pattern} \\
+\verb|grep -v "<regex pattern>" <file/stdin>| \\ .\dotfill {inverse matching} \\
+%TODO xargs  
+
+\subsection{Network}
+\verb|ifconfig| \dotfill {check network info (e.g. ip)} \\
+\verb|ping <ip/url>| \dotfill {ping} \\
+\verb|traceroute <ip/url>| \dotfill {trace route} \\
+\verb|nslookup <url/ip>| \dotfill {DNS lookup} \\
+\verb|netstat| \dotfill {List listening port} \\
+
+\subsection{Misc}
+\verb|wc -l| .\dotfill {count lines} \\
+\verb|convert <fname.jpg>... <fname.pdf>|\\ .\dotfill {convert images to pdf (need imagemagick)} \\
+
+\section{git}
+\subsection{}
+
+\verb|git add . -A| \dotfill {add files in ./} \\
+\verb|git status| \dotfill {check files to be commited} \\
+\verb|git log --graph| \dotfill {history} \\
+\verb|git branch <branch name>| \dotfill {create new branch} \\
+\verb|git branch| \dotfill {list all branches} \\
+\verb|git branch -d <branch name>| \dotfill {delete branch} \\
+\verb|git checkout <branch name>| \dotfill {switch to branch} \\
+\verb|git reset --soft HEAD^| \dotfill {reset to previous commit} \\
+\verb|git mergetool| \dotfill {use mergetool} \\
+
+\end{multicols*}
+\end{document}
+
