@@ -1,4 +1,4 @@
 CheatSheet
 ==========
 
-Developer's cheat sheet, inclde linux commands, git, etc.
+Developer's cheat sheet, inclde vim commands, linux commands, git, etc.
